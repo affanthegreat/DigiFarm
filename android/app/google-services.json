@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "264285120170",
+    "firebase_url": "https://digifarm-fba18.firebaseio.com",
+    "project_id": "digifarm-fba18",
+    "storage_bucket": "digifarm-fba18.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264285120170:android:0b4d7325c80324547692d3",
+        "android_client_info": {
+          "package_name": "com.valno.digifarm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "264285120170-357bmu4tgv3j48bhphd9v0jkcs3utpm0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.valno.digifarm",
+            "certificate_hash": "e4d38fab116d66fab0d91bba212b1522a9331a0b"
+          }
+        },
+        {
+          "client_id": "264285120170-9i659067os6dcl3frh6uknejnh4ae0p0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCn4BnGv7EC8KDT6yyvjdSXRe7a-Mkdyc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "264285120170-9i659067os6dcl3frh6uknejnh4ae0p0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
