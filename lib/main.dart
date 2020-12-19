@@ -14,6 +14,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'general/infoPage.dart';
 import 'marketplace/marketHome.dart';
 import 'my_flutter_app_icons.dart';
 
@@ -216,7 +217,9 @@ class _MyHomePageState extends State<MyHomePage> {
       print(data);
     }
   }
+
   var stateLoc;
+
   helper(List<Result> places) {
     setState(() {
       placeName1 = places[0].name;
@@ -270,8 +273,8 @@ class _MyHomePageState extends State<MyHomePage> {
         height: MediaQuery.of(context).size.height * 0.11,
         width: MediaQuery.of(context).size.width * 0.271,
         decoration: BoxDecoration(
-            borderRadius:
-                BorderRadius.circular(MediaQuery.of(context).size.height * 0.01),
+            borderRadius: BorderRadius.circular(
+                MediaQuery.of(context).size.height * 0.023),
             gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -310,7 +313,6 @@ class _MyHomePageState extends State<MyHomePage> {
       margin: EdgeInsets.all(7),
       height: MediaQuery.of(context).size.height * 0.331,
       width: MediaQuery.of(context).size.width,
-
       child: Column(
         children: [
           Padding(
@@ -349,29 +351,38 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       child: miniCard(MyFlutterApp.grow, "Demand & growth")),
                   InkWell(
-                      onTap: () {
-
-                      },
+                      onTap: () {},
                       child: miniCard(Icons.wb_sunny, "Weather Forecasts")),
                   InkWell(
                       onTap: () {
-
+                        Navigator.of(context).push(PageRouteBuilder(
+                            opaque: false,
+                            pageBuilder: (BuildContext context, _, __) =>
+                                informationPage(
+                                  titles: [
+                                    "Agriculture - Selection and Sowing of Seeds",
+                                    "Selection of Seeds",
+                                    "Sowing of Seeds"
+                                  ],
+                                  Paragraphs: [
+                                    "Agriculture is the art and ability to cultivate plants and other livestock. There are different types of agriculture, and it plays a crucial role in the life of an economy. The main purpose of agriculture is not only to cultivate crops, but it also provides employment for the large proportion of the population, and it is the backbone of our economic system.As we all are aware of, there are multiple steps to be followed in the agricultural process.The first and the initial stage is the selection of the seeds. Seeds are the fundamental requirement in most of the agricultural process. Before beginning with the cultivation, selecting the best quality seeds is a challenging task for the farmers. Because only the good quality of seeds give an expected result or yield. Therefore, farmers have to choose suitable seeds from the variety of options available in the market.Let us know more in detail about the selection and sowing of seeds.Selection and sowing of seeds are two agricultural practices which demand extreme attention and care.",
+                                    "Healthy and good quality seeds are the roots of a healthy crop. The seeds that are used to cultivate new crops have to be selected very carefully and of high quality. The good quality seeds can either be bought from different sources or farmers can produce by their own. The selection of seeds is used to improve the quality of yields. There are several diseases that are transmitted via the seeds. If the selected seeds are from the infected fields then the seed-borne diseases will cause severe problems in the agricultural process. Thus, always obtain seeds from healthy plants. Along with the diseases free and healthy seeds, farmers also need to check the germination period of the seeds, nutrients required and other benefits in terms of yield and finance. Overall, selecting good quality seeds are essential for growing strong and healthy crops.",
+                                    "Sowing seeds is an essential part of crop production. After the preparation of soil, the previously selected seeds are scattered in the field. This process is called sowing. Sowing should be done carefully and evenly. If seeds are not sown uniformly, overcrowding of crops happens. For sufficient sunlight, water and other requirements congestion need to be prevented.  There are two different methods of sowing the seeds.  Traditionally, sowing is done manually by hands and in some places, seed drilling machines are used."
+                                  ],
+                                )));
                       },
                       child: miniCard(Icons.info_outlined, "Seed Selection")),
-
                 ],
-
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left:10,right: 10.0),
+            padding: const EdgeInsets.only(left: 10, right: 10.0),
             child: Divider(
               color: Colors.black,
               thickness: 0.1,
             ),
           ),
-
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Container(
@@ -395,7 +406,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                           "Total Water Supplied this year",
                                       infoButtonLabel:
                                           "Want to know about Irrigation and Water resources?",
-                                      floatingButtonLabel: "Supplied Water Today",
+                                      floatingButtonLabel:
+                                          "Supplied Water Today",
                                     )));
                       },
                       child: miniCard(MyFlutterApp.drop, "Irrigation")),
@@ -423,25 +435,19 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                       child: miniCard(Icons.wb_incandescent, "Fertilizers")),
                   InkWell(
-                      onTap: () {
-
-                      },
+                      onTap: () {},
                       child: miniCard(Icons.car_rental, "Transport"))
-
                 ],
-
               ),
             ),
           ),
-
           Padding(
-            padding: const EdgeInsets.only(left:10,right: 10.0),
+            padding: const EdgeInsets.only(left: 10, right: 10.0),
             child: Divider(
               color: Colors.black,
               thickness: 0.1,
             ),
           ),
-
         ],
       ),
     );
@@ -452,21 +458,20 @@ class _MyHomePageState extends State<MyHomePage> {
         textScaleFactor: 1,
         text: TextSpan(
             text: str1,
-
             style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
                 fontSize: 12,
                 fontFamily: "Poppins"),
             children: [
-          TextSpan(
-              text: ",$str2",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.normal,
-                  fontSize: 9,
-                  fontFamily: "Poppins"))
-        ]));
+              TextSpan(
+                  text: ",$str2",
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.normal,
+                      fontSize: 9,
+                      fontFamily: "Poppins"))
+            ]));
   }
 
   String _currentAddress;
@@ -476,8 +481,6 @@ class _MyHomePageState extends State<MyHomePage> {
     print(newKeyword);
     setState(() {});
   }
-
-
 
   bool loadingAnimation(bool value) {
     setState(() {
@@ -579,7 +582,8 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               height: MediaQuery.of(context).size.height * 0.190,
               width: MediaQuery.of(context).size.width * 0.966,
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+              decoration:
+                  BoxDecoration(borderRadius: BorderRadius.circular(20)),
               child: Center(
                 child: GoogleMap(
                   myLocationEnabled: true,
@@ -604,7 +608,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     ScrollPhysics physics;
     return Scaffold(
         appBar: AppBar(
@@ -642,7 +645,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: CircularProgressIndicator(),
               )
             : SingleChildScrollView(
-                physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+                physics: BouncingScrollPhysics(
+                    parent: AlwaysScrollableScrollPhysics()),
                 scrollDirection: Axis.vertical,
                 child: Center(
                   child: Column(
@@ -657,7 +661,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   color: Colors.black,
                                   fontSize: 16,
                                   fontFamily: "Poppins",
-                                  fontWeight: FontWeight.w600),
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ],
@@ -685,21 +689,8 @@ class _MyHomePageState extends State<MyHomePage> {
                               );
                             }
                           }),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                        child: Divider(
-                          thickness: 0.7,
-                          color: Colors.greenAccent,
-                        ),
-                      ),
-
-                      marketplace(),
                       SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-
-
-                          child: aboutCrop()),
-
+                          scrollDirection: Axis.vertical, child: aboutCrop()),
                       Padding(
                         padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                         child: Divider(
@@ -707,8 +698,23 @@ class _MyHomePageState extends State<MyHomePage> {
                           color: Colors.greenAccent,
                         ),
                       ),
-
-                       Container(child: Text("Made by Valno",style: TextStyle(fontFamily: "Poppins",fontSize: 8,color: Colors.grey.shade600,fontWeight: FontWeight.bold),))
+                      marketplace(),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                        child: Divider(
+                          thickness: 0.7,
+                          color: Colors.greenAccent,
+                        ),
+                      ),
+                      Container(
+                          child: Text(
+                        "Affan The Great's Creation",
+                        style: TextStyle(
+                            fontFamily: "Poppins",
+                            fontSize: 8,
+                            color: Colors.grey.shade600,
+                            fontWeight: FontWeight.bold),
+                      ))
                     ],
                   ),
                 ),
@@ -747,27 +753,21 @@ class _SearchFilter extends State<SearchFilter> {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
-
-
-
-
-
-
     Container listmenu(String text, String text2) {
       return Container(
         margin: EdgeInsets.all(6),
         height: MediaQuery.of(context).size.height * 0.145,
         decoration: BoxDecoration(
-            color:Colors.white ,
+            color: Colors.white,
             borderRadius: BorderRadius.circular(6),
             border: Border.all(color: Colors.grey.shade300, width: 1)),
         child: Column(
           children: [
             Padding(
-              padding:  EdgeInsets.all(MediaQuery.of(context).size.height * 0.01),
+              padding:
+                  EdgeInsets.all(MediaQuery.of(context).size.height * 0.01),
               child: Row(
                 children: [
                   Text(
@@ -790,7 +790,8 @@ class _SearchFilter extends State<SearchFilter> {
               ),
             ),
             Padding(
-              padding:  EdgeInsets.all(MediaQuery.of(context).size.height * 0.007),
+              padding:
+                  EdgeInsets.all(MediaQuery.of(context).size.height * 0.007),
               child: Row(
                 children: [
                   Container(
@@ -810,11 +811,6 @@ class _SearchFilter extends State<SearchFilter> {
       );
     }
 
-
-
-
-
-
     return Drawer(
       child: Scaffold(
         appBar: AppBar(
@@ -832,7 +828,8 @@ class _SearchFilter extends State<SearchFilter> {
         ),
         body: Stack(children: [
           ListView(
-            physics: BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+            physics:
+                BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(left: 4.0),
