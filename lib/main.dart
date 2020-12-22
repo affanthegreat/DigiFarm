@@ -1,26 +1,24 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:digifarm/Login.dart';
-
-import 'package:digifarm/growth.dart';
 import 'package:digifarm/MeasurePage.dart';
+import 'package:digifarm/growth.dart';
 import 'package:digifarm/util.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:geolocator/geolocator.dart';
-import 'dart:math';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'dart:async';
-import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'general/infoPage.dart';
-import 'marketplace/marketHome.dart';
-import 'my_flutter_app_icons.dart';
 
 import 'data/error.dart';
 import 'data/place_response.dart';
 import 'data/result.dart';
+import 'general/infoPage.dart';
+import 'marketplace/marketHome.dart';
+import 'my_flutter_app_icons.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -355,10 +353,24 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: miniCard(Icons.wb_sunny, "Weather Forecasts")),
                   InkWell(
                       onTap: () {
-                        Navigator.of(context).push(PageRouteBuilder(
-                            opaque: false,
-                            pageBuilder: (BuildContext context, _, __) =>
-                                informationPage(
+                        // Navigator.of(context).push(PageRouteBuilder(
+                        //     opaque: false,
+                        //     pageBuilder: (BuildContext context, _, __) =>
+                        //         informationPage(
+                        //           titles: [
+                        //             "Agriculture - Selection and Sowing of Seeds",
+                        //             "Selection of Seeds",
+                        //             "Sowing of Seeds"
+                        //           ],
+                        //           Paragraphs: [
+                        //             "Agriculture is the art and ability to cultivate plants and other livestock. There are different types of agriculture, and it plays a crucial role in the life of an economy. The main purpose of agriculture is not only to cultivate crops, but it also provides employment for the large proportion of the population, and it is the backbone of our economic system.As we all are aware of, there are multiple steps to be followed in the agricultural process.The first and the initial stage is the selection of the seeds. Seeds are the fundamental requirement in most of the agricultural process. Before beginning with the cultivation, selecting the best quality seeds is a challenging task for the farmers. Because only the good quality of seeds give an expected result or yield. Therefore, farmers have to choose suitable seeds from the variety of options available in the market.Let us know more in detail about the selection and sowing of seeds.Selection and sowing of seeds are two agricultural practices which demand extreme attention and care.",
+                        //             "Healthy and good quality seeds are the roots of a healthy crop. The seeds that are used to cultivate new crops have to be selected very carefully and of high quality. The good quality seeds can either be bought from different sources or farmers can produce by their own. The selection of seeds is used to improve the quality of yields. There are several diseases that are transmitted via the seeds. If the selected seeds are from the infected fields then the seed-borne diseases will cause severe problems in the agricultural process. Thus, always obtain seeds from healthy plants. Along with the diseases free and healthy seeds, farmers also need to check the germination period of the seeds, nutrients required and other benefits in terms of yield and finance. Overall, selecting good quality seeds are essential for growing strong and healthy crops.",
+                        //             "Sowing seeds is an essential part of crop production. After the preparation of soil, the previously selected seeds are scattered in the field. This process is called sowing. Sowing should be done carefully and evenly. If seeds are not sown uniformly, overcrowding of crops happens. For sufficient sunlight, water and other requirements congestion need to be prevented.  There are two different methods of sowing the seeds.  Traditionally, sowing is done manually by hands and in some places, seed drilling machines are used."
+                        //           ],
+                        //         )));
+
+                        Navigator.of(context).push(TransparentRoute(
+                            builder: (BuildContext context) => informationPage(
                                   titles: [
                                     "Agriculture - Selection and Sowing of Seeds",
                                     "Selection of Seeds",
@@ -394,21 +406,21 @@ class _MyHomePageState extends State<MyHomePage> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => new MeasurePage(
-                                      collectionName: 'timesWatered',
-                                      descriptiveHeading:
-                                          "Track record of Water supply",
-                                      appBarTitle: "Irrigation",
-                                      descriptiveSubHeading:
-                                          "Measure how frequently you are supplying water to your crop.",
-                                      monthDescription:
-                                          "Number of Times water supplied this month",
-                                      yearDescription:
-                                          "Total Water Supplied this year",
-                                      infoButtonLabel:
-                                          "Want to know about Irrigation and Water resources?",
-                                      floatingButtonLabel:
-                                          "Supplied Water Today",
-                                    )));
+                                  collectionName: 'timesWatered',
+                                  descriptiveHeading:
+                                  "Track record of Water supply",
+                                  appBarTitle: "Irrigation",
+                                  descriptiveSubHeading:
+                                  "Measure how frequently you are supplying water to your crop.",
+                                  monthDescription:
+                                  "Number of Times water supplied this month",
+                                  yearDescription:
+                                  "Total Water Supplied this year",
+                                  infoButtonLabel:
+                                  "Want to know about Irrigation and Water resources?",
+                                  floatingButtonLabel:
+                                  "Supplied Water Today",
+                                )));
                       },
                       child: miniCard(MyFlutterApp.drop, "Irrigation")),
                   InkWell(
@@ -417,21 +429,21 @@ class _MyHomePageState extends State<MyHomePage> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => new MeasurePage(
-                                      collectionName: 'timesFertilized',
-                                      descriptiveHeading:
-                                          "Track record of Fertilizer supply",
-                                      appBarTitle: "Fertilizers",
-                                      descriptiveSubHeading:
-                                          "Measure how frequently you are supplying fertilizers to your crop.",
-                                      monthDescription:
-                                          "Number of times water supplied this month",
-                                      yearDescription:
-                                          "Total No. of times Fertilizers Supplied this year",
-                                      infoButtonLabel:
-                                          "Want to know about Fertilizers and Soil?",
-                                      floatingButtonLabel:
-                                          'Added fertilizers today!',
-                                    )));
+                                  collectionName: 'timesFertilized',
+                                  descriptiveHeading:
+                                  "Track record of Fertilizer supply",
+                                  appBarTitle: "Fertilizers",
+                                  descriptiveSubHeading:
+                                  "Measure how frequently you are supplying fertilizers to your crop.",
+                                  monthDescription:
+                                  "Number of times water supplied this month",
+                                  yearDescription:
+                                  "Total No. of times Fertilizers Supplied this year",
+                                  infoButtonLabel:
+                                  "Want to know about Fertilizers and Soil?",
+                                  floatingButtonLabel:
+                                  'Added fertilizers today!',
+                                )));
                       },
                       child: miniCard(Icons.wb_incandescent, "Fertilizers")),
                   InkWell(
@@ -527,44 +539,23 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             (placeName1 != null &&
-                    address1 != null &&
-                    placeName1 != null &&
-                    address1 != null)
+                address1 != null &&
+                placeName1 != null &&
+                address1 != null)
                 ? Container(
-                    child: Column(children: [
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.15,
-                        child: Column(
-                          children: [
-                            Padding(
-                                padding: const EdgeInsets.only(left: 8.0),
-                                child: Row(children: [
-                                  Container(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.85,
-                                      child: textshow(placeName1, address1)),
-                                ])),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 50.0),
-                              child: Divider(
-                                color: Colors.grey.shade500,
-                                thickness: 0.2,
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Row(
-                                children: [
-                                  Container(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.85,
-                                      child: textshow(placeName2, address2)),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
+              child: Column(children: [
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.15,
+                  child: Column(
+                    children: [
+                      Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
+                          child: Row(children: [
+                            Container(
+                                width: MediaQuery.of(context).size.width *
+                                    0.85,
+                                child: textshow(placeName1, address1)),
+                          ])),
                       Padding(
                         padding: const EdgeInsets.only(right: 50.0),
                         child: Divider(
@@ -572,18 +563,39 @@ class _MyHomePageState extends State<MyHomePage> {
                           thickness: 0.2,
                         ),
                       ),
-                    ]),
-                  )
+                      Padding(
+                        padding: const EdgeInsets.only(left: 8.0),
+                        child: Row(
+                          children: [
+                            Container(
+                                width: MediaQuery.of(context).size.width *
+                                    0.85,
+                                child: textshow(placeName2, address2)),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 50.0),
+                  child: Divider(
+                    color: Colors.grey.shade500,
+                    thickness: 0.2,
+                  ),
+                ),
+              ]),
+            )
                 : Container(
-                    height: MediaQuery.of(context).size.height * 0.15,
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    )),
+                height: MediaQuery.of(context).size.height * 0.15,
+                child: Center(
+                  child: CircularProgressIndicator(),
+                )),
             Container(
               height: MediaQuery.of(context).size.height * 0.190,
               width: MediaQuery.of(context).size.width * 0.966,
               decoration:
-                  BoxDecoration(borderRadius: BorderRadius.circular(20)),
+              BoxDecoration(borderRadius: BorderRadius.circular(20)),
               child: Center(
                 child: GoogleMap(
                   myLocationEnabled: true,
@@ -642,85 +654,85 @@ class _MyHomePageState extends State<MyHomePage> {
         endDrawer: SearchFilter(updateKeyWord),
         body: isLoading == true
             ? Center(
-                child: CircularProgressIndicator(),
-              )
+          child: CircularProgressIndicator(),
+        )
             : SingleChildScrollView(
-                physics: BouncingScrollPhysics(
-                    parent: AlwaysScrollableScrollPhysics()),
-                scrollDirection: Axis.vertical,
-                child: Center(
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 13.0),
-                            child: Text(
-                              "Trending in Farming",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 16,
-                                  fontFamily: "Poppins",
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                        ],
-                      ),
-                      StreamBuilder(
-                          stream: FirebaseFirestore.instance
-                              .collection("News")
-                              .snapshots(),
-                          builder: (context, snapshot) {
-                            if (!snapshot.hasData) {
-                              return CircularProgressIndicator();
-                            } else {
-                              return Container(
-                                height:
-                                    MediaQuery.of(context).size.height * 0.2,
-                                child: ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: snapshot.data.documents.length,
-                                    itemBuilder: (context, index) {
-                                      DocumentSnapshot ds =
-                                          snapshot.data.documents[index];
-                                      return card(ds["photourl"],
-                                          ds["description"], ds["url"]);
-                                    }),
-                              );
-                            }
-                          }),
-                      SingleChildScrollView(
-                          scrollDirection: Axis.vertical, child: aboutCrop()),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                        child: Divider(
-                          thickness: 0.7,
-                          color: Colors.greenAccent,
-                        ),
-                      ),
-                      marketplace(),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                        child: Divider(
-                          thickness: 0.7,
-                          color: Colors.greenAccent,
-                        ),
-                      ),
-                      Container(
-                          child: Text(
-                        "Affan The Great's Creation",
+          physics: BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics()),
+          scrollDirection: Axis.vertical,
+          child: Center(
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 13.0),
+                      child: Text(
+                        "Trending in Farming",
                         style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
                             fontFamily: "Poppins",
-                            fontSize: 8,
-                            color: Colors.grey.shade600,
                             fontWeight: FontWeight.bold),
-                      ))
-                    ],
+                      ),
+                    ),
+                  ],
+                ),
+                StreamBuilder(
+                    stream: FirebaseFirestore.instance
+                        .collection("News")
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return CircularProgressIndicator();
+                      } else {
+                        return Container(
+                          height:
+                          MediaQuery.of(context).size.height * 0.2,
+                          child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: snapshot.data.documents.length,
+                              itemBuilder: (context, index) {
+                                DocumentSnapshot ds =
+                                snapshot.data.documents[index];
+                                return card(ds["photourl"],
+                                    ds["description"], ds["url"]);
+                              }),
+                        );
+                      }
+                    }),
+                SingleChildScrollView(
+                    scrollDirection: Axis.vertical, child: aboutCrop()),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: Divider(
+                    thickness: 0.7,
+                    color: Colors.greenAccent,
                   ),
                 ),
-              )
-        // This trailing comma makes auto-formatting nicer for build methods.
-        );
+                marketplace(),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                  child: Divider(
+                    thickness: 0.7,
+                    color: Colors.greenAccent,
+                  ),
+                ),
+                Container(
+                    child: Text(
+                      "Affan The Great's Creation",
+                      style: TextStyle(
+                          fontFamily: "Poppins",
+                          fontSize: 8,
+                          color: Colors.grey.shade600,
+                          fontWeight: FontWeight.bold),
+                    ))
+              ],
+            ),
+          ),
+        )
+      // This trailing comma makes auto-formatting nicer for build methods.
+    );
   }
 }
 
@@ -767,7 +779,7 @@ class _SearchFilter extends State<SearchFilter> {
           children: [
             Padding(
               padding:
-                  EdgeInsets.all(MediaQuery.of(context).size.height * 0.01),
+              EdgeInsets.all(MediaQuery.of(context).size.height * 0.01),
               child: Row(
                 children: [
                   Text(
@@ -791,7 +803,7 @@ class _SearchFilter extends State<SearchFilter> {
             ),
             Padding(
               padding:
-                  EdgeInsets.all(MediaQuery.of(context).size.height * 0.007),
+              EdgeInsets.all(MediaQuery.of(context).size.height * 0.007),
               child: Row(
                 children: [
                   Container(
@@ -829,7 +841,7 @@ class _SearchFilter extends State<SearchFilter> {
         body: Stack(children: [
           ListView(
             physics:
-                BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
+            BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics()),
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(left: 4.0),
